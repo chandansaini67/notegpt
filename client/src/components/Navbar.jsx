@@ -57,19 +57,21 @@ function Navbar() {
           )}
         </div>
 
-        {/* Hamburger */}
-        <button
-          className="navbar-hamburger"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <FiX /> : <FiMenu />}
-        </button>
+        {/* Mobile controls: Theme toggle + Hamburger */}
+        <div className="navbar-mobile-controls">
+          <ThemeToggle />
+          <button
+            className="navbar-hamburger"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <FiX /> : <FiMenu />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
       <div className={`navbar-mobile ${mobileOpen ? 'open' : ''}`}>
-        <ThemeToggle />
         {!isAuthenticated && (
           <>
             <a href="/#features" className="navbar-link" onClick={closeMobile}>Features</a>

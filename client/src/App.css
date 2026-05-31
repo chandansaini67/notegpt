@@ -479,14 +479,7 @@ input, textarea {
   text-align: left;
 }
 
-@media (max-width: 768px) {
-  .navbar-links {
-    display: none;
-  }
-  .navbar-hamburger {
-    display: flex;
-  }
-}
+
 
 /* ============================================
    AUTH PAGES
@@ -2582,7 +2575,22 @@ input, textarea {
 .footer-credit strong { color: var(--text-secondary); }
 
 /* ── Landing Responsive ── */
+.navbar-mobile-controls {
+  display: none;
+}
+
 @media (max-width: 768px) {
+  .navbar-links {
+    display: none;
+  }
+  .navbar-mobile-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .navbar-hamburger {
+    display: flex;
+  }
   .landing-hero { padding: 60px 20px 80px; }
   .hero-cards { display: none; }
   .hero-title { font-size: 2.2rem; }
