@@ -22,7 +22,25 @@ connectDB();
 const app = express();
 
 // Middleware
-app.use(cors());
+// Allow requests from Vercel frontend and local dev
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:5173',
+  /\.vercel\.app$/,           // any *.vercel.app domain
+  process.env.FRONTEND_URL,  // custom domain if set
+].filter(Boolean);
+
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests with no origin (mobile apps, curl, Postman)
+    if (!origin) return callback(null, true);
+    const allowed = allowedOrigins.some(o =>
+      typeof o === 'string' ? o === origin : o.test(origin)
+    );
+    callback(null, allowed ? origin : false);
+  },
+  credentials: true
+}));
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true }));
 
