@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+// Base URL configured for production Render backend or local fallback
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || '/api'
 })
